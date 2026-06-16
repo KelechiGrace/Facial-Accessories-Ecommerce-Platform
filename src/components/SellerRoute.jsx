@@ -1,0 +1,8 @@
+import { Navigate } from "react-router-dom";
+
+export default function SellerRoute({ children }) {
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  if (!user.email) return <Navigate to="/admin/login" />;
+  if (user.role !== "seller") return <Navigate to="/" />;
+  return children;
+}
